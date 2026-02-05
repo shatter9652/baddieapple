@@ -79,7 +79,7 @@ flashrom --wp-enable
 Alternatively, you can use the [Unkeyroll](#Unkeyroll) section at the same point, then booting a shim to do the rest of the work.
 ## Prebuilts?
 
-[dl.crosbreaker.dev(fast)](https://dl.crosbreaker.dev/ChromeOS/modified-recovery/baddieapple/)
+[dl.crosbreaker.dev (fast)](https://dl.crosbreaker.dev/ChromeOS/modified-recovery/baddieapple/)
 
 [GitHub large releases (slower)](https://github.com/crosbreaker/badsh1mmer/releases/latest)
 
