@@ -1,0 +1,41 @@
+on: workflow_dispatch
+
+jobs:
+  build:
+    strategy: 
+      matrix:
+        board: [nissa, skyrim, guybrush, corsola, brya, rex, cherry, geralt, staryu]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          root-reserve-mb: 512
+          temp-reserve-mb: 64
+          lvm-size: 0
+          remove-dotnet: true
+          remove-android: true
+          remove-haskell: true
+          remove-codeql: true
+          remove-docker-images: true
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: run build
+        run: |
+          set -x
+          sudo rm -rf /var/lib/apt/lists/*
+          sudo apt-get update
+          sudo apt-get install -y pv
+          sudo QUIET=1 ./builder_baddieapple.sh "${{ matrix.board }}"
+          zip baddieapple-"${{ matrix.board }}".zip *.bin
+
+      - name: create release
+        uses: ading2210/gh-large-releases@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: baddieapple-*.zip
+          make_latest: true

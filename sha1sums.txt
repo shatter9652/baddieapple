@@ -1,0 +1,2 @@
+NOTE: A and B have the same sum, all of these are the result of futility show
+nissa 16002.60.0 (129): SHA512; 9b2f6f22b50e7687c8baf05181d409588e492db3

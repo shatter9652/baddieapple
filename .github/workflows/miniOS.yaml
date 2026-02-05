@@ -1,0 +1,30 @@
+on:
+  workflow_dispatch:   
+
+permissions:
+  contents: write  
+
+jobs:
+  build:
+    strategy: 
+      matrix:
+        board: [nissa, skyrim, guybrush, corsola, brya, rex, cherry, geralt, staryu]
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download repo
+        uses: actions/checkout@v4
+      
+      - name: Run build
+        run: |
+          set -x
+          cd miniOSextractor
+          sudo QUIET=1 bash githubworkflow.sh "${{ matrix.board }}"
+
+      - name: Upload to existing GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: minios131
+          files: miniOSextractor/minios-${{ matrix.board }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
