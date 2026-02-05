@@ -32,6 +32,7 @@ NOTE:  If this version doesn't work for you, check out [no_minios_prebuilt.sh](.
 ## Why does this work?
 Google forgot to increase the miniOS kernver (yes, it is seperate from the normal kernver) after pushing the original BadApple patch. Allowing us to downgrade miniOS using a modified recovery image, as recovery images don't check either. Funnly enough, they mentioned doing it, but didn't think about recovery image modification (see [comment #4 of the orginal BadApple report](https://issuetracker.google.com/issues/382540412#comment4))
 ### Quicksilver
+Quicksilver was found by [emerwyi](https://github.com/emerwyi)
 To unenroll on 142 and below, run the following:
 ```bash
 vpd -i RW_VPD -s re_enrollment_key="$(openssl rand -hex 32)"
