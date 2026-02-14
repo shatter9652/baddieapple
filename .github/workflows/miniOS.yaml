@@ -8,7 +8,7 @@ jobs:
   build:
     strategy: 
       matrix:
-        board: [nissa, skyrim, guybrush, corsola, brya, rex, cherry, geralt, staryu]
+        board: [dedede]
 
     runs-on: ubuntu-latest
     steps:
